@@ -18,4 +18,20 @@ const db = mysql.createConnection({
     console.log('Connected to the employees database.')
 );
 
-app.get
+app.get('/', (req, res) => {
+    console.log('Hello');
+    res.send("Hello 1");
+});
+
+
+
+
+// Default response for any other request (Not Found)
+app.use((req, res) => {
+    res.status(404).end();
+});
+
+// funtion to start server on port 3001
+app.listen(PORT, () => {
+    console.log(`Server is running on PORT: ${PORT}`)
+});
