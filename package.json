@@ -1,0 +1,27 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": " Command-line application to manage a company's employee database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CHAUDHARYS1/employee-tracker.git"
+  },
+  "author": "Shital Chaudhary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CHAUDHARYS1/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/CHAUDHARYS1/employee-tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.0",
+    "node": "^16.6.1",
+    "nodemon": "^2.0.12"
+  }
+}
