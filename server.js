@@ -1,4 +1,5 @@
 const db = require('./db/connection.js');
+const apiRoutes = require('./routes/apiRoutes');
 const express = require('express');
 
 const PORT = process.env.PORT || 3001;
@@ -11,9 +12,12 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 // use apiRoutes
-app.get('/', (req, res) => {
-    res.send("Hello");
-});
+// app.get('/', (req, res) => {
+//     res.send("Hello");
+// });
+
+//
+app.use('/api', apiRoutes);
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
