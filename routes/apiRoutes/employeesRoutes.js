@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../db/connection');
-
+const inputCheck = require('../../utils/inputCheck');
 
 // show all empoloyees
 router.get('/employees', (req, res) => {
@@ -38,6 +38,36 @@ router.get('/employees/:id', (req, res) => {
     });
 });
 
+// add an employee
+// missing manager 
+router.post('/employee', ({
+    body
+}, res) => {
+    const errors = inputCheck(body, 'first_name', 'last_name', 'roles_id');
+    if (errors) {
+        res.status(400).json({
+            error: errors
+        });
+        return;
+    }
+
+    const sql = `INSERT INTO employees (first_name, last_name, roles_id)
+    VALUES (?,?,?)`;
+    const params = [body.first_name, body.last_name, body.roles_id];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({
+                error: err.message
+            });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: body
+        });
+    });
+});
 
 
 
