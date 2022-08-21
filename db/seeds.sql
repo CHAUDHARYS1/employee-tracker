@@ -1,4 +1,4 @@
-INSERT INTO department (department_name)
+INSERT INTO departments (department_name)
 VALUES
   ('operations'),
   ('engineering'),
@@ -21,15 +21,15 @@ VALUES
 
 INSERT INTO roles (role_title, salary, department_id)
 VALUES
-  ('Salesperson', 1000 , 1),
-  ('Lead Engineer', 1000, 2),
-  ('Junior Engineer', 1000, 2),
-  ('Manager', 1000, 1),
-  ('Senior Manager', 1000, 1),
-  ('Service Coordinator', 1000, 3),
-  ('Project Coordinator', 1000, 1),
-  ('Recieving', 1000, 4),
-  ('CEO', 1000, 5);
+  ('Salesperson', 60000 , 1),
+  ('Lead Engineer', 100000, 2),
+  ('Junior Engineer', 60000, 2),
+  ('Manager', 80000, 1),
+  ('Senior Manager', 90000, 1),
+  ('Service Coordinator', 50000, 3),
+  ('Project Coordinator', 50000, 1),
+  ('Recieving', 20000, 4),
+  ('CEO', 120000, 5);
 
 
 
