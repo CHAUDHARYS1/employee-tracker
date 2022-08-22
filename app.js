@@ -2,14 +2,14 @@ const figlet = require('figlet');
 const inquirer = require('inquirer');
 const db = require('./db/connection');
 // main title
-figlet('Employee Management', function(err, data) {
-    if(err) {
-        console.log('Something went wrong...');
-        console.dir(err);
-        return;
-    }
-    console.log(data);
-});
+// figlet('Employee Management', function(err, data) {
+//     if(err) {
+//         console.log('Something went wrong...');
+//         console.dir(err);
+//         return;
+//     }
+//     console.log(data);
+// });
 
 const prompt = () => {
     return inquirer.prompt([{
