@@ -69,6 +69,37 @@ router.post('/employee', ({
     });
 });
 
+// update employee roles based on employee selection
+router.put('/employees/:id', (req, res) => {
+    const errors = inputCheck(req.body, 'roles_id');
 
+    if (errors) {
+        res.status(400).json({
+            error: errors
+        });
+        return;
+    }
+    const sql = `UPDATE employees SET roles_id = ? 
+                 WHERE id = ?`;
+    const params = [req.body.roles_id, req.params.id];
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({
+                error: err.message
+            });
+            // check if a record was found
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'Employee not found'
+            });
+        } else {
+            res.json({
+                message: 'success',
+                data: req.body,
+                changes: result.affectedRows
+            });
+        }
+    });
+});
 
 module.exports = router;
