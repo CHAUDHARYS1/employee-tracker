@@ -83,7 +83,7 @@ function showPromts() {
     }
 });
 }
-// view all departments function
+// view list of all departments function
 function viewAllDepartments(){
     helper.viewDepartments().then(([result]) =>{
         console.table(result);
@@ -91,6 +91,13 @@ function viewAllDepartments(){
     })
 }
 
+// view list of roles function
+function viewAllRoles(){
+    helper.viewRoles().then(([result]) =>{
+        console.table(result);
+        showPromts();
+    })
+}
 
 
 function quit(){
