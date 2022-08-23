@@ -4,6 +4,7 @@ const {
 const {
     exit
 } = require('process');
+const { help } = require('yargs');
 const helper = require('./db/helper');
 
 function init() {
@@ -99,6 +100,13 @@ function viewAllRoles(){
     })
 }
 
+// view list of employees function
+function viewAllEmployees(){
+    helper.viewEmployees().then(([result]) => {
+        console.table(result);
+        showPromts();
+    })
+}
 
 function quit(){
     exit();

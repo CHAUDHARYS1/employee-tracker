@@ -14,6 +14,11 @@ class getEmployeeData {
     viewRoles(){
         return connection.promise().query("SELECT * FROM roles");
     }
+
+    // view all employees
+    viewEmployees(){
+        return connection.promise().query("SELECT * FROM employees");
+    }
 }
 
 module.exports = new getEmployeeData(connection);
