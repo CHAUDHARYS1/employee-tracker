@@ -68,7 +68,7 @@ function showPromts() {
             viewAllEmployees();
             break;
           case "ADD_DEPARTMENT":
-            createDepartment();
+            createNewDepartment();
             break;
           case "ADD_ROLE":
             createRole();
@@ -107,6 +107,23 @@ function viewAllEmployees(){
         showPromts();
     })
 }
+
+// create a new department
+function createNewDepartment(){
+    prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Please enter new department name...",
+        },
+    ]).then((response) => {
+        helper.addNewDepartment(response).then(() => {
+            console.log("department ", response, "added to the database ");
+            showPromts();
+        });
+    });
+}
+
 
 function quit(){
     exit();

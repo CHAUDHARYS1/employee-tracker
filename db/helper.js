@@ -19,6 +19,15 @@ class getEmployeeData {
     viewEmployees(){
         return connection.promise().query("SELECT * FROM employees");
     }
+
+    // create a new department
+    addNewDepartment(departments) {
+        return connection
+          .promise()
+          .query("INSERT INTO departments SET ?;", departments)
+          .then(() => {});
+      }
 }
+//INSERT INTO departments (department_name) VALUES (?)
 
 module.exports = new getEmployeeData(connection);
