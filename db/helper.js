@@ -1,3 +1,4 @@
+const { connect } = require('./connection');
 const connection = require('./connection');
 
 class getEmployeeData {
@@ -26,8 +27,14 @@ class getEmployeeData {
           .promise()
           .query("INSERT INTO departments SET ?;", departments)
           .then(() => {});
-      }
+    }
 
+    // create a new role and add that to the database
+    addNewRole(roles){
+        return connection.promise().query("INSERT INTO roles SET ?;", roles)
+    }
+
+      
     // create a new employee and add that to the database
     addNewEmployee(employee){
         return connection.promise().query("INSERT INTO employees SET ? ;", employee)

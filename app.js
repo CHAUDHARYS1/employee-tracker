@@ -72,7 +72,7 @@ function showPromts() {
             createNewDepartment();
             break;
           case "ADD_ROLE":
-            createRole();
+            createNewRole();
             break;
           case "ADD_EMPLOYEE":
             createNewEmployee();
@@ -125,6 +125,44 @@ function createNewDepartment(){
     });
 }
 
+// create a new role
+function createNewRole(){
+    prompt([
+        {
+        type: "input",
+        name: "role_title",
+        message: "Give this role a new title...",
+    },
+    {
+        type: "input",
+        name: "salary",
+        message: "Please enter salary for this role...",
+    },
+]).then((response) => {
+    helper.viewDepartments().then(([result]) => {
+        let roleTitle = response.role_title;
+        let roleSalary = response.salary;
+        console.table(result);
+        prompt({
+          type: "input",
+          name: "department_id",
+          message: "what department id will this role come under? ",
+        }).then((response) => {
+          let newRole = {
+            role_title: roleTitle,
+            salary: roleSalary,
+            department_id: response.department_id,
+          };
+          helper.addNewRole(newRole).then(() => {
+            console.log(`Added "${newRole.role_title}" to the database`);
+            showPromts();
+          });
+        });
+      });
+})
+}
+
+
 // create a new employee
 function createNewEmployee(){
     prompt([
@@ -175,6 +213,9 @@ function createNewEmployee(){
 
     });
 }
+
+// create a function to update employees role 
+
 
 
 function quit(){
