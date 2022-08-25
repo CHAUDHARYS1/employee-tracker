@@ -1,3 +1,4 @@
+const { response } = require('express');
 const {
     prompt
 } = require('inquirer');
@@ -74,7 +75,7 @@ function showPromts() {
             createRole();
             break;
           case "ADD_EMPLOYEE":
-            createEmployee();
+            createNewEmployee();
             break;
           case "UPDATE_EMPLOYEE_ROLE":
             updateEmployeeRole();
@@ -121,6 +122,57 @@ function createNewDepartment(){
             console.log("department ", response, "added to the database ");
             showPromts();
         });
+    });
+}
+
+// create a new employee
+function createNewEmployee(){
+    prompt([
+        {
+            type: "input",
+            name: "first_name",
+            message: "Please enter first name of employee...",
+        },
+        {
+            type: "input",
+            name: "last_name",
+            message: "Please enter last name of employee"
+        },
+    ]).then((response) => {
+        let firstName = response.first_name;
+        let lastName = response.last_name;
+
+        helper.viewRoles().then(([result])=>{
+            console.table(result);
+            prompt({
+                type:"input",
+                name:"roles_id",
+                message: "Assign a ROLE ID for this employee...",
+                choices: result,
+            }).then((role) => {
+                helper.viewEmployees().then(([result]) => {
+                    console.table(result);
+                    prompt({
+                        type: "input",
+                        name: "manager_id",
+                        message: "Assign a MANAGER ID for this employee...",
+                        choise: result,
+                    }).then((res) => {
+                        let newEmployee = {
+                            first_name: firstName,
+                            last_name: lastName,
+                            roles_id: role.roles_id,
+                            manager_id: res.manager_id,
+                        };
+                        helper.addNewEmployee(newEmployee).then((result) => {
+                            console.log(`Added " ${firstName} ${lastName} " to the database`);
+                            showPromts();
+                        });
+                    });
+                });
+            });
+        });
+
     });
 }
 

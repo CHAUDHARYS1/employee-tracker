@@ -20,13 +20,19 @@ class getEmployeeData {
         return connection.promise().query("SELECT * FROM employees");
     }
 
-    // create a new department
+    // create a new department and add that to the database
     addNewDepartment(departments) {
         return connection
           .promise()
           .query("INSERT INTO departments SET ?;", departments)
           .then(() => {});
       }
+
+    // create a new employee and add that to the database
+    addNewEmployee(employee){
+        return connection.promise().query("INSERT INTO employees SET ? ;", employee)
+    }
+
 }
 //INSERT INTO departments (department_name) VALUES (?)
 

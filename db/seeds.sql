@@ -1,4 +1,4 @@
-INSERT INTO departments (department_name)
+INSERT INTO departments (name)
 VALUES
   ('operations'),
   ('engineering'),
@@ -6,18 +6,18 @@ VALUES
   ('warehouse'),
   ('executive');
 
-INSERT INTO employees (first_name, last_name, roles_id)
+INSERT INTO employees (first_name, last_name, roles_id, manager_id)
 VALUES
-  ('Ronald', 'Firbank', 1),
-  ('Virginia', 'Woolf', 1),
-  ('Piers', 'Gaveston', 1),
-  ('Charles', 'LeRoi', 2),
-  ('Katherine', 'Mansfield', 2),
-  ('Dora', 'Carrington', 3),
-  ('Edward', 'Bellamy', 3),
-  ('Montague', 'Summers', 3),
-  ('Octavia', 'Butler', 3),
-  ('Unica', 'Zurn', 4);
+  ('Ronald', 'Firbank', 1, 1),
+  ('Virginia', 'Woolf', 1, 1),
+  ('Piers', 'Gaveston', 1, 2),
+  ('Charles', 'LeRoi', 2, 3),
+  ('Katherine', 'Mansfield', 2, 5),
+  ('Dora', 'Carrington', 3, 2),
+  ('Edward', 'Bellamy', 3, 2),
+  ('Montague', 'Summers', 3, 2),
+  ('Octavia', 'Butler', 3, 2),
+  ('Unica', 'Zurn', 4, 4);
 
 INSERT INTO roles (role_title, salary, department_id)
 VALUES
