@@ -78,7 +78,7 @@ function showPromts() {
             createNewEmployee();
             break;
           case "UPDATE_EMPLOYEE_ROLE":
-            updateEmployeeRole();
+            updateEmployeeInfo();
             break;
           default:
             quit();
@@ -215,7 +215,45 @@ function createNewEmployee(){
 }
 
 // create a function to update employees role 
-
+function updateEmployeeInfo(){
+    helper.viewEmployees().then(([rows]) => {
+        let employees = rows;
+        const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+          name: `${first_name} ${last_name}`,
+          value: id,
+        }));
+    
+        prompt([
+          {
+            type: "list",
+            name: "employeeId",
+            message: "Which employee's role do you want to update?",
+            choices: employeeChoices,
+          },
+        ]).then((res) => {
+          let employeeId = res.employeeId;
+          helper.viewRoles().then(([rows]) => {
+            let roles = rows;
+            const roleChoices = roles.map(({ id, title }) => ({
+              name: title,
+              value: id,
+            }));
+    
+            prompt([
+              {
+                type: "list",
+                name: "roleId",
+                message: "What's the new role of this employee?",
+                choices: roleChoices,
+              },
+            ])
+              .then((res) => helper.updateEmployeeRole(employeeId, res.roleId))
+              .then(() => console.log("Employee's role is updated"))
+              .then(() => showPromts());
+          });
+        });
+      });
+    }
 
 
 function quit(){

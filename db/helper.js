@@ -40,6 +40,16 @@ class getEmployeeData {
         return connection.promise().query("INSERT INTO employees SET ? ;", employee)
     }
 
+    // update the existing employee role's in the database
+    updateEmployeeRole(employeeId, roleId){
+        return this.connection
+            .promise()
+            .query("UPDATE employees SET roles_id = ? WHERE id = ?", [
+                roleId,
+                employeeId,
+            ]);
+    }
+
 }
 //INSERT INTO departments (department_name) VALUES (?)
 
